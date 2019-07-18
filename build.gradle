@@ -12,6 +12,9 @@ buildscript {
     }
 }
 
+plugins{
+    id "org.flywaydb.flyway" version "5.2.4"
+}
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
@@ -32,7 +35,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'com.h2database:h2'
-
+    compile 'org.flywaydb:flyway-core:5.2.4'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.0.0')
@@ -40,4 +43,8 @@ dependencies {
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.0.0')
     testCompile 'org.assertj:assertj-core:3.10.0'
     testCompile 'org.mockito:mockito-core:2.+'
+}
+flyway {
+    url = 'jdbc:h2:mem:court'
+    user = 'sa'
 }
